@@ -82,7 +82,7 @@ col2.plotly_chart(fig1)
 # Porcentagem de imoveis que aceitam ou nao animais
 accept_animals = df['Aceita Animais'].value_counts()
 df_animais = pd.DataFrame({
-    'Aceita animais': ['Aceita', 'Não aceita'],
+    'Aceita animais': ['Não aceita', 'Aceita'],
     'Quantidade': [accept_animals.get(1,0), accept_animals.get(0,0)]
     })
 fig_animals = px.pie(df_animais, values='Quantidade', names='Aceita animais', title='Porcentagem de Imóveis que aceitam animais',
