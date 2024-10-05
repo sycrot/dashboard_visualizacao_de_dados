@@ -106,7 +106,7 @@ col5.plotly_chart(fig4)
 
 # 
 fig5 = px.scatter(df, x='Área (m²)', y='IPTU', 
-title='Valor do IPTU vs Área do Imóvel',
+title='Valor do IPTU por Área (m²)',
 labels={'Área (m²)': 'Área (m²)', 'IPTU': 'Valor do IPTU (R$)'},
 template='plotly_white')
 col6.plotly_chart(fig5)
