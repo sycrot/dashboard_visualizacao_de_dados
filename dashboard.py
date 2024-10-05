@@ -50,7 +50,7 @@ st.markdown("""
 st.title('Dashboard de Imóveis para Aluguel')
 # Mostrar os primeiros registros
 # st.write('Visualização dos dados:')
-st.dataframe(df.head(), use_container_width=True)
+# st.dataframe(df.head(), use_container_width=True)
 st.divider()
 
 
@@ -61,12 +61,19 @@ col4, col5, col6 = st.columns(3)
 city_counts = df['Cidade'].value_counts().reset_index()
 city_counts.columns = ['Cidade', 'Número de imóveis']
 
+# Gráfico de barras do número de imóveis por cidade
+fig2 = px.bar(city_counts, x='Cidade', y='Número de imóveis',
+title='Número de Imóveis por Cidade',
+labels={'Cidade': 'Cidade', 'Número de Imóveis': 'Número de Imóveis'},
+color='Cidade')
+col1.plotly_chart(fig2)
+
 # Gráfico de dispersão do valor do aluguel em relação à área
 fig1 = px.strip(df, x='Área (m²)', y='Valor do Aluguel', color='Cidade',
 title='Valor do Aluguel por Área (m²)', 
 labels={'Área (m²)': 'Área (m²)', 'Valor do Aluguel': 'Valor do Aluguel'},
 template='plotly_white')
-col1.plotly_chart(fig1)
+col2.plotly_chart(fig1)
 
 #cols = col2.columns(len(city_counts))
 #for i, row in city_counts.iterrows():
@@ -81,14 +88,7 @@ df_animais = pd.DataFrame({
 fig_animals = px.pie(df_animais, values='Quantidade', names='Aceita animais', title='Porcentagem de Imóveis que aceitam animais',
 hole=0.6, template='plotly_white'
 )
-col2.plotly_chart(fig_animals)
-
-# Gráfico de barras do número de imóveis por cidade
-fig2 = px.bar(city_counts, x='Cidade', y='Número de imóveis',
-title='Número de Imóveis por Cidade',
-labels={'Cidade': 'Cidade', 'Número de Imóveis': 'Número de Imóveis'},
-color='Cidade')
-col3.plotly_chart(fig2)
+col3.plotly_chart(fig_animals)
 
 # Gráfico de pizza para distribuição de imóveis mobiliados
 furnished = df['Mobiliado'].value_counts()
